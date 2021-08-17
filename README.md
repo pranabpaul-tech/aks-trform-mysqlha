@@ -1,2 +1,2 @@
 # aks-trform-mysqlha
-A repository to demonstrate high availability using Kubernetes Statefulset in AKS. Used MySQL as the Stateful database. Also implemented AKS cluster, ACR, and Key Vault using Terraform template.
+A repository to implement high availability on MySQL running as Statefulset in Kubernetes. Also implemented AKS cluster, ACR, and Key Vault using Terraform template.
