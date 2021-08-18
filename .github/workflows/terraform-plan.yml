@@ -4,7 +4,7 @@ on:
     branches: 
       - infra
 env:
-  tf_working_dir: './'
+  tf_working_dir: '../../'
   tf_actions_version: 0.13.5
 
 jobs:
