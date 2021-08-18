@@ -8,6 +8,7 @@ provider "azurerm" {
       purge_soft_delete_on_destroy = true
     }
   }
+  subscription_id = "118ae9f9-9038-414c-ba64-08c5056602d1"
 }
 provider "azuread" {
   version = ">= 1.4.0"
