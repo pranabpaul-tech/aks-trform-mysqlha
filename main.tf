@@ -13,6 +13,7 @@ provider "azuread" {
   version = ">= 1.4.0"
 }
 
+
 ####################
 # Data section #
 ####################
