@@ -22,12 +22,12 @@ data "azurerm_client_config" "current" {}
 # Resource section #
 #####################
 resource "azurerm_resource_group" "aks-bcdr" {
-  name     = "${var.resource_group_name}"
-  location = "${var.resource_group_location}"
+  name     = var.resource_group_name
+  location = var.resource_group_location
 }
 
 resource "azurerm_virtual_network" "aks-bcdr" {
-  name                = "${var.vnet_name}"
+  name                = var.vnet_name
   location            = azurerm_resource_group.aks-bcdr.location
   resource_group_name = azurerm_resource_group.aks-bcdr.name
   address_space       = ["10.0.0.0/16"]
@@ -35,7 +35,7 @@ resource "azurerm_virtual_network" "aks-bcdr" {
 }
 
 resource "azurerm_subnet" "aks-bcdr" {
-  name                 =  "${var.subnet_name}"
+  name                 =  var.subnet_name
   resource_group_name  = azurerm_resource_group.aks-bcdr.name
   virtual_network_name = azurerm_virtual_network.aks-bcdr.name
   address_prefixes     = ["10.0.0.0/24"]
@@ -43,7 +43,7 @@ resource "azurerm_subnet" "aks-bcdr" {
 }
 
 resource "azurerm_container_registry" "aks-bcdr" {
-  name                = "${var.acr_name}"
+  name                = var.acr_name
   resource_group_name = azurerm_resource_group.aks-bcdr.name
   location            = azurerm_resource_group.aks-bcdr.location
   sku                 = "Standard"
@@ -52,11 +52,11 @@ resource "azurerm_container_registry" "aks-bcdr" {
 }
 
 resource "azurerm_kubernetes_cluster" "aks-bcdr" {
-  name                = "${var.aks_name}"
+  name                = var.aks_name
   location            = azurerm_resource_group.aks-bcdr.location
   resource_group_name = azurerm_resource_group.aks-bcdr.name
   dns_prefix          = "aksbcdr"
-  kubernetes_version = "${var.kubernetes_version}"
+  kubernetes_version = var.kubernetes_version
   depends_on = [azurerm_resource_group.aks-bcdr, azurerm_subnet.aks-bcdr]
   identity {
     type = "SystemAssigned"
@@ -64,7 +64,7 @@ resource "azurerm_kubernetes_cluster" "aks-bcdr" {
   default_node_pool {
     name       = "default"
     node_count = 3
-    vm_size    = "${var.vm_size}"
+    vm_size    = var.vm_size
     availability_zones = [ "1", "2", "3" ]
     os_disk_size_gb = 128
     enable_node_public_ip = false
@@ -81,7 +81,7 @@ resource "azurerm_kubernetes_cluster" "aks-bcdr" {
 }
 
 resource "azurerm_key_vault" "aks-bcdr" {
-  name                        = "${var.azurerm_key_vault}"
+  name                        = var.azurerm_key_vault
   location                    = azurerm_resource_group.aks-bcdr.location
   resource_group_name         = azurerm_resource_group.aks-bcdr.name
   enabled_for_disk_encryption = true
