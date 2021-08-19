@@ -1,3 +1,6 @@
+variable "subscription_id" {
+  default = "118ae9f9-9038-414c-ba64-08c5056602d1"
+}
 variable "resource_group_name" {
   default = "aksbcdrrg"
 }
