@@ -8,7 +8,7 @@ provider "azurerm" {
       purge_soft_delete_on_destroy = true
     }
   }
-  subscription_id = ARM_SUBSCRIPTION_ID
+  subscription_id = env.ARM_SUBSCRIPTION_ID
 }
 provider "azuread" {
   version = ">= 1.4.0"
