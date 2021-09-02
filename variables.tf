@@ -25,6 +25,7 @@ variable "kubernetes_version" {
 variable "vm_size" {
   default = "Standard_D2_v2"
 }
+
 variable "azurerm_key_vault" {
   default = "aksbcdrkeyvault"
 }
